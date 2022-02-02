@@ -1,0 +1,15 @@
+<div class="my-container">
+  <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="center center" cdkDropListGroup>
+    <div *ngFor="let item of serviceList; let index = index" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="index"(cdkDropListDropped)="drop($event)">
+      <app-item [myService]="item" [showBtns]="showButtons" (btnRedirect)="redirect($event)" (btnEdit)="editService($event)" [cdkDragDisabled]="!showButtons" (btnDelete)="deleteService($event)" cdkDrag></app-item>  
+    </div>
+    <div *ngIf="showButtons" >
+      <mat-card class="plus-tile" (click)="addNewService()" matTooltip="Add new tile !" matTooltipPosition="right">
+        <mat-card-content style="margin: 40px auto">
+          <mat-icon class="icon-display">add</mat-icon>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div> 
+

@@ -1,0 +1,25 @@
+.mat-form-field {
+    display: block;
+}
+.test-field{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    max-width: 204;
+    height: 25px;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.dialog-actions{
+    justify-content: center;
+}
+.flex-spacer {
+    flex: 1 1 auto;
+}
+.slide-field{
+    margin-bottom: 12px;
+}
+:host ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #000000 ;
+}

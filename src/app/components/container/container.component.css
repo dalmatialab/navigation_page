@@ -1,0 +1,40 @@
+:host {
+    display: block;
+    padding: 16px;
+}
+
+.my-container{
+  max-width: 1000px;
+  margin: 75px auto;
+  padding: 10px;
+
+}
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 0 20px -1px rgba(255, 255, 255, 0.9), 0 0 20px -1px rgba(255, 255, 255, 0.9)
+}
+  
+.cdk-drop-list-dragging > *:not(.cdk-drag-placeholder) {
+  display: none;
+}
+  
+.cdk-drag-animating {
+  transition: transform 300m cubic-bezier(0, 0, 0.2, 1);
+}
+.icon-display {
+  transform: scale(2.5);
+  color: white;
+}
+.plus-tile{
+  border: dashed 1px white;
+  height: 107px;
+  width: 199px;
+  text-align: center;
+  cursor: pointer;
+}
+.plus-tile:hover{
+  box-shadow: 0 0 20px -1px rgba(255, 255, 255, 0.9);
+}
+
+  

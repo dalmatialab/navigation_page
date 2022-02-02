@@ -1,0 +1,26 @@
+<mat-toolbar class="nav-bar"  fxLayout="row" fxLayoutAlign="space-between center">
+  <span>{{title.titleName}}</span>
+  <div *ngIf="isChecked" [fxHide.lt-sm]="true">
+    <button mat-raised-button id="downButton" (click)="downloadFile()" [disabled]="isDisabled" [ngStyle]="{'color': isDisabled ? '' : '#69F0AE' }" matTooltip="Downloads JSON file with changes!" matTooltipPosition="below">
+      Download Changes
+    </button>
+  </div>
+  <mat-slide-toggle [checked]="isChecked" color="accent" (change)="onToggle($event)" style="font-size: medium;" [fxHide.lt-sm]="true" matTooltip="Add, Delete, Edit or Drag&Drop Tiles!" matTooltipPosition="below">Edit mode</mat-slide-toggle>
+  <div [fxHide.gt-xs]="true">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon [ngStyle]="{'color': isDisabled ? '' : '#69F0AE' }">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-slide-toggle [checked]="isChecked" color="accent" (change)="onToggle($event)" style="font-size: medium;" (click)="$event.stopPropagation();" matTooltip="Add, Delete, Edit or Drag&Drop Tiles!" matTooltipPosition="below">Edit mode</mat-slide-toggle>
+      </button>
+      <button mat-menu-item *ngIf="isChecked" (click)="downloadFile()" [disabled]="isDisabled">
+        <mat-icon [ngStyle]="{'color': isDisabled ? '' : '#69F0AE' }">file_download</mat-icon>
+        <span style="color: white;">Download changes</span> 
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+
+

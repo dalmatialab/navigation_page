@@ -1,0 +1,56 @@
+<h2 mat-dialog-title style="color: #69F0AE;">Tile Editor</h2>
+
+<mat-dialog-content [formGroup]="myForm">
+
+    <mat-form-field color="accent">
+        <input matInput placeholder="Service name" id="name" type="text" formControlName="name" maxlength="13" [ngStyle]="{'color': myForm.get('fontColor').value}">
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+        <input matInput placeholder="Service url" id="url" type="text" formControlName="url"/>
+        <mat-icon matSuffix mat-icon-button matTooltip="URL has to start with HTTP/s!" matTooltipPosition="below" color="accent">priority_high</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+        <input placeholder="Tile color" matInput [ngxMatColorPicker]="picker" formControlName="tileColor">
+        <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #picker ></ngx-mat-color-picker>
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+        <mat-label>Select Font & Icon Color</mat-label>
+        <mat-select formControlName="fontColor">
+          <mat-option value="white">White</mat-option>
+          <mat-option value="black">Black</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+        <input matInput placeholder="Icon type" id="icon" type="text" maxlength="100" formControlName="iconType" [ngStyle]="{'color': myForm.get('fontColor').value}" #icon/>
+        <button matSuffix mat-icon-button (click)="iconHelper()" matTooltip="Click here to see the list of icons!" matTooltipPosition="below">
+            <mat-icon>question_mark</mat-icon>
+        </button>
+    </mat-form-field>
+    
+    <div class="test-field">
+        <mat-icon style="margin-right: 10px;" [ngStyle]="{'color': myForm.get('fontColor').value}">{{icon.value}}</mat-icon>
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+
+    <button class="mat-raised-button"
+            (click)="close()">
+        Close
+    </button>
+
+    <span class="flex-spacer"></span>
+
+    <button class="mat-raised-button mat-accent"
+            (click)="save()">
+        Save
+    </button>
+    
+</mat-dialog-actions>
+
