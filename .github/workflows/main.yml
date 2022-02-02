@@ -6,6 +6,7 @@ name: Docker build and push
 # documentation.
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - '*.*'
