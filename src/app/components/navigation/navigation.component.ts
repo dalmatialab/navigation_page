@@ -11,27 +11,26 @@ import { Title } from 'src/app/Title';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  serviceList = this.fileService.serviceList
-  isChecked: boolean = false;
-  title : Title = this.fileService.appTitle
-  downBtnSubscription!: Subscription;
-  isDisabled: boolean = true;
-  @Output() slideToggled= new EventEmitter()
+  isChecked: boolean = false; // Boolean that sets toggle default value
+  title : Title = {titleName: ""} // Title of the application
+  downBtnSubscription!: Subscription; // Subscription for download button
+  isDisabled: boolean = true; // Boolean that defines whether button should be shown or not
 
   constructor(private uiService: UiService, private fileService: FileService) {
     this.downBtnSubscription = this.fileService.onChange().subscribe(val => this.isDisabled = val) //Download button
   }
 
   ngOnInit(): void {
+    this.title = this.fileService.appTitle // Get title from file service
   }
 
-  onToggle(event: MatSlideToggleChange){
+  onToggle(event: MatSlideToggleChange){ // Trigger slide toggle
     this.isChecked=event.checked
     this.uiService.toggleShowButtons()
   }
 
   downloadFile(){
-    this.fileService.createFile(this.serviceList) // Download JSON array file.
+    this.fileService.createFile() // Download JSON array file 
   }
 
 }

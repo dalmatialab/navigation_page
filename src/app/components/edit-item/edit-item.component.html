@@ -1,0 +1,10 @@
+<mat-card class="two-buttons-card" [ngStyle]="{'background-color': 'rgb('+ (myService.tileColor.red) +','+ (myService.tileColor.green) +','+ (myService.tileColor.blue) +')'}" tabindex="0">
+    <mat-card-title [ngStyle]="{'color' : myService.fontColor}" style="white-space: nowrap;"><label #myTitle style="cursor: grab;">{{myService.name}}</label></mat-card-title>
+    <mat-card-content class="content-section">
+        <mat-icon class="icon-display" [ngStyle]="{'color' : myService.fontColor}">{{myService.iconType}}</mat-icon>
+    </mat-card-content>
+    <mat-card-actions style="margin-top: -10px;">
+        <button mat-mini-fab class="edit-button" [style.--color]="myService.fontColor" [ngStyle]="{'background-color': 'rgb('+ (myService.tileColor.red) +','+ (myService.tileColor.green) +','+ (myService.tileColor.blue) +')'}" (click)="onEdit(myService)" matTooltip="Edit tile!"  matTooltipPosition="above"><mat-icon [ngStyle]="{'color' : myService.fontColor}">edit</mat-icon></button>
+        <button mat-mini-fab class="delete-button" [style.--color]="myService.fontColor" [ngStyle]="{'background-color': 'rgb('+ (myService.tileColor.red) +','+ (myService.tileColor.green) +','+ (myService.tileColor.blue) +')'}" (dblclick)="onDelete(myService)" matTooltip="Double-click to delete!" matTooltipPosition="above"><mat-icon [ngStyle]="{'color' : myService.fontColor}">delete</mat-icon></button>
+    </mat-card-actions>
+</mat-card>

@@ -11,11 +11,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FileService {
-  serviceList: Service[] = []
-  appTitle: Title = {titleName: ""}
-  isDisabled: boolean = true;
-  private subject = new Subject<any>();
-  private _jsonURL = "/data.json"
+  serviceList: Service[] = [] // Default value of serviceList
+  appTitle: Title = {titleName: ""} // Default value of application title
+  isDisabled: boolean = true; // Boolean that defines whether download button should be visible 
+  private subject = new Subject<any>(); // Subject that is used for subscriptions (download-button)
+  private _jsonURL = "/data.json" // Link to fetch json file
 
   constructor(private dialog:MatDialog, private http:HttpClient) {
     this.getJSON().subscribe(data => {
@@ -26,35 +26,6 @@ export class FileService {
 
   public getJSON(): Observable<any> {
     return this.http.get(this._jsonURL);  // In production mode it will fetch data.json from server. In development will read local data.json file.
-  }
-
-  addNewService(){
-
-    var emptyService: Service = { //This empty service is used as default in the modal component.
-      name: "",
-      url: "",
-      tileColor: {
-        red: 0,
-        green: 0,
-        blue: 0
-      },
-      fontColor: "white",
-      iconType: "link"
-    }
-
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true; 
-    dialogConfig.autoFocus=true
-    dialogConfig.data = emptyService
-    const dialogRef = this.dialog.open(DialogComponent, dialogConfig)
-
-    dialogRef.afterClosed().subscribe(data=>{
-      if(data != undefined){ // To avoid Close button.
-        this.serviceList.push(data)
-        this.isDisabled = false // Show the download button.
-        this.subject.next(this.isDisabled) // This executes change of the subject.
-      }
-    })
   }
 
   onChange(): Observable<any> {
@@ -69,9 +40,37 @@ export class FileService {
       event.container.data
     );
     if (JSON.stringify(beforeChange) !== JSON.stringify(this.serviceList)){ // Enable download button if there are any changes!
-      this.isDisabled = false
-      this.subject.next(this.isDisabled) // This executes change of the subject.
+      this.isDisabled = false // Since order of serviceList definitely changed, show download button
+      this.subject.next(this.isDisabled) // This executes change of the subject
     }
+  }
+
+  addNewService(){
+    var emptyService: Service = { //This empty service is used as default in the modal component.
+      name: "",
+      url: "",
+      tileColor: {
+        red: 0,
+        green: 0,
+        blue: 0
+      },
+      fontColor: "white",
+      iconType: "link"
+    }
+
+    const dialogConfig = new MatDialogConfig(); /// Open dialog component, inject empty service
+    dialogConfig.disableClose = true; 
+    dialogConfig.autoFocus=true
+    dialogConfig.data = emptyService
+    const dialogRef = this.dialog.open(DialogComponent, dialogConfig)
+
+    dialogRef.afterClosed().subscribe(data=>{
+      if(data != undefined){ // Ensure that user save button was clicked, not close
+        this.serviceList.push(data) // Add data to serviceList
+        this.isDisabled = false // Since serviceList definitely changed, show download button 
+        this.subject.next(this.isDisabled) // Pass new value to a subject, that triggers subscriptions
+      }
+    })
   }
 
   deleteService(service: Service){
@@ -87,14 +86,14 @@ export class FileService {
 
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true; //Close modal if you click somewhere else.
+    dialogConfig.disableClose = true; // Prevent closing modal, if click happend outside of modal.
     dialogConfig.autoFocus=true
 
-    dialogConfig.data = service //Forward service parameter into modal.
+    dialogConfig.data = service // Forward service parameter into modal.
     const dialogRef=this.dialog.open(DialogComponent, dialogConfig)
 
     dialogRef.afterClosed().subscribe(data => {
-      if (data != undefined){ //If the user clicked save button, change forwarded service.
+      if (data != undefined){ // Ensure that user save button was clicked, not close
         let beforeChange: Service [] = Object.assign([],this.serviceList)
 
         var formData: Service = data // Set type to data that was outputted from Modal.
@@ -110,18 +109,18 @@ export class FileService {
     });
   }
 
-  createFile(data: Service []){
+  createFile(){
     var titleObj = { // Generate title object
-      "title" : this.appTitle
+      "title" : this.appTitle.titleName
     }
     var serviceObject = { // Generate service object
-      "services" : data
+      "services" : this.serviceList
     }
 
     var newObj = Object.assign(titleObj, serviceObject) // Combine title & service object into new one.
 
     var sJson = JSON.stringify(newObj)
-    var element = document.createElement('a');
+    var element = document.createElement('a'); // Creates link element, that is deleted after click.
     element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
     element.setAttribute('download', "data.json");
     element.style.display="none";
@@ -129,6 +128,5 @@ export class FileService {
     element.click() //Simulate click, so it can be downloaded.
     document.body.removeChild(element);  
   }
-
 
 }

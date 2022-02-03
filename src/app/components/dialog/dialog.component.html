@@ -3,7 +3,7 @@
 <mat-dialog-content [formGroup]="myForm">
 
     <mat-form-field color="accent">
-        <input matInput placeholder="Service name" id="name" type="text" formControlName="name" maxlength="13" [ngStyle]="{'color': myForm.get('fontColor').value}">
+        <input matInput placeholder="Service name" id="name" type="text" formControlName="name" maxlength="25" [ngStyle]="{'color': myForm.get('fontColor').value}">
     </mat-form-field>
 
     <mat-form-field color="accent">
@@ -53,4 +53,5 @@
     </button>
     
 </mat-dialog-actions>
+
 

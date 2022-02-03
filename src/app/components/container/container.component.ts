@@ -11,31 +11,29 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
-  public serviceList: Service[] = []
-  showButtons: boolean = false;
-  isDisabled: boolean = true;
-  subscription!: Subscription;
-  downBtnSubscription!: Subscription;
+  public serviceList: Service[] = [] // Service that is passed to child components
+  showButtons: boolean = false; // Boolean that defines which item component should be rendered (item/edit-item), changed by slide toggle 
+  subscription!: Subscription; // Subscription for slide toggle
+  downBtnSubscription!: Subscription; // Subscription for download button
 
   constructor(private fileService:FileService, private uiService:UiService ) { // Subscribe to the changes.
-    this.subscription = this.uiService.onToggle().subscribe(val => this.showButtons = val) 
-    this.downBtnSubscription = this.fileService.onChange().subscribe(val => this.isDisabled = val)
-   }
-
-  ngOnInit(): void {
-    this.serviceList = this.fileService.serviceList // Get the data from JSON file.
+    this.subscription = this.uiService.onToggle().subscribe(val => this.showButtons = val)
   }
 
-  drop(event: CdkDragDrop<number>): void {
-    this.fileService.dropTile(event); // Trigger tile drop.
+  ngOnInit(): void {
+    this.serviceList = this.fileService.serviceList // Get the data from JSON file
   }
 
   redirect(url: string){
-    window.open(url) // Open new tab, and redirect user to the URL.
+    window.open(url) // Open new tab, and redirect user to the URL
   }
 
-  downloadFile(){
-    this.fileService.createFile(this.serviceList) // Download JSON array file.
+  resizeFont(element: HTMLElement){
+    this.uiService.fitText(element) // Font size will change on page load, tile edition or tile creation
+  }
+
+  drop(event: CdkDragDrop<number>): void {
+    this.fileService.dropTile(event); // Trigger tile drop
   }
 
   addNewService(){

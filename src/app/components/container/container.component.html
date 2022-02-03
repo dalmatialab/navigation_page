@@ -1,9 +1,15 @@
 <div class="my-container">
   <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="center center" cdkDropListGroup>
-    <div *ngFor="let item of serviceList; let index = index" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="index"(cdkDropListDropped)="drop($event)">
-      <app-item [myService]="item" [showBtns]="showButtons" (btnRedirect)="redirect($event)" (btnEdit)="editService($event)" [cdkDragDisabled]="!showButtons" (btnDelete)="deleteService($event)" cdkDrag></app-item>  
+    <div *ngFor="let item of serviceList; let index = index" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="index" (cdkDropListDropped)="drop($event)">
+      <ng-container *ngIf="showButtons;  then showEdit; else showLink"></ng-container>
+      <ng-template #showLink>
+        <app-item [myService]="item" (btnRedirect)="redirect($event)" (onAfterViewInit)="resizeFont($event)"></app-item>
+      </ng-template>
+      <ng-template #showEdit>
+        <app-edit-item [myService]="item" (btnEdit)="editService($event)" (btnDelete)="deleteService($event)" (onAfterViewInit)="resizeFont($event)" [cdkDragDisabled]="!showButtons" cdkDrag></app-edit-item>
+      </ng-template>  
     </div>
-    <div *ngIf="showButtons" >
+    <div *ngIf="showButtons">
       <mat-card class="plus-tile" (click)="addNewService()" matTooltip="Add new tile !" matTooltipPosition="right">
         <mat-card-content style="margin: 40px auto">
           <mat-icon class="icon-display">add</mat-icon>

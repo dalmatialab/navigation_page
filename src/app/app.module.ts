@@ -22,6 +22,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { ContainerComponent } from './components/container/container.component';
 import { ItemComponent } from './components/item/item.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     ContainerComponent,
     ItemComponent,
     DialogComponent,
+    EditItemComponent,
   ],
   imports: [
     BrowserModule,

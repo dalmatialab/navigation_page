@@ -7,32 +7,12 @@
 .one-button-card:hover{
     box-shadow: 0 0 20px -1px rgba(255, 255, 255, 0.9);
 }
-.two-buttons-card{
-    height: 107px;
-    width: 200px;
-    text-align: center;
-    cursor: grab;
-}
 
 .icon-display {
     transform: scale(2.3);
     display: flex;
 }
-.edit-button{
-    margin-right: 30px;
-    transform: scale(0.75);
-    box-shadow: none;   
-}
-.edit-button:hover{ 
-    box-shadow: 0px -2px 10px 0px var(--color);
-}
-.delete-button{
-    box-shadow: none;
-    transform: scale(0.75);
-}
-.delete-button:hover{
-    box-shadow: 0px -2px 10px 0px var(--color);
-}
+
 .content-section{
     margin: 15px auto;
     display: flex;
