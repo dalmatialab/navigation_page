@@ -1,7 +1,8 @@
 ![example workflow](https://github.com/dalmatialab/navigation_page/actions/workflows/main.yml/badge.svg)
 
 # Supported tags and respective Dockerfile links
-- [1.0-rc-1](https://github.com/dalmatialab/navigation_page/)
+- [1-0-rc-2](https://github.com/dalmatialab/navigation_page/blob/07ea2874c1ca5a211b9ceb4af30342d57663f938/Dockerfile)
+- [1.0-rc-1](https://github.com/dalmatialab/navigation_page/blob/07ea2874c1ca5a211b9ceb4af30342d57663f938/Dockerfile)
 
 # What is Navigation Page?
 Navigation page is a front-end web application that simplifies access to other web-sites. It is a similar to a standard browser home page, where you can add links to social media, newspaper or some useful development tools. This website was developed using [Angular 13](https://angular.io/),  a TypeScript-based free and open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations.
