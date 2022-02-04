@@ -7,11 +7,11 @@
 # What is Navigation Page?
 Navigation page is a front-end web application that simplifies access to other web-sites. It is a similar to a standard browser home page, where you can add links to social media, newspaper or some useful development tools. This website was developed using [Angular 13](https://angular.io/),  a TypeScript-based free and open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations.
 
-<img src="https://github.com/dalmatialab/navigation_page/blob/cd950f7a3836cf829841949080c0a8e2edecf58b/logo.png" width="200" height="200">
+<img src="https://github.com/dalmatialab/navigation_page/blob/cd950f7a3836cf829841949080c0a8e2edecf58b/logo.png?raw=true" width="200" height="200">
 
 Navigation Page is a quite practical solution in case of having a private network with multiple services and applications. Instead of memorizing IP addresses, ports and domain names, you can easily create handy links to those endpoints.
 # Key features 
-<img src="https://github.com/dalmatialab/navigation_page/blob/cd950f7a3836cf829841949080c0a8e2edecf58b/homepage.png">
+<img src="https://github.com/dalmatialab/navigation_page/blob/cd950f7a3836cf829841949080c0a8e2edecf58b/homepage.png?raw=true">
 
 In the picture above, You can see an example of user interface of the Navigation page. As I have mentioned, a main purpose of this application is to simplify access to other websites, but there are lots of features that improve usability of the application, and those features include:
  - Adding new tiles
